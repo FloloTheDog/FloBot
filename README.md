@@ -1,0 +1,2 @@
+# FloBot
+Fun Discord bot
