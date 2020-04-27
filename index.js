@@ -60,7 +60,7 @@ Client.on("message", (Message) => { // emitted whenever someone sends a message
     	console.log(Commands[Command]);
 		if (Commands[Command]) { // check if the command exists
       console.log(Command);
-      if (Guild.id == 696160005967314985) {
+      if (Guild && Guild.id == 696160005967314985) {
         console.log("Special def req [" + Guild.id + "]");
         let isAllowed = false;
         for (i in SpecList) {
