@@ -44,6 +44,7 @@ Client.on("ready", () => { // emitted when bot is ready
 Client.on("message", (Message) => { // emitted whenever someone sends a message
 	let Guild = Message.guild; // can most likely be shortened to "Message.guild"; the server the message was sent in
 	let User = Message.user; // the person who sent the message
+  let GuildMember = Message.member;
   let Channel = Message.channel;
 	let Content = Message.content; // the contents of the message
   
@@ -60,7 +61,7 @@ Client.on("message", (Message) => { // emitted whenever someone sends a message
     	console.log(Commands[Command]);
 		if (Commands[Command]) { // check if the command exists
       console.log(Command);
-      if (Guild && Guild.id == 696160005967314985) {
+      if (Guild && Guild.id == 696160005967314985 && !GuildMember.roles.find(r => r.id == 696216363613683783)) {
         console.log("Special def req [" + Guild.id + "]");
         let isAllowed = false;
         for (i in SpecList) {
@@ -68,7 +69,7 @@ Client.on("message", (Message) => { // emitted whenever someone sends a message
           if (SpecList[i] == Channel.id) isAllowed = true;
         }
         if (!isAllowed) {
-          Message.channel.send("FloBot commands cannot be used in this channel ;w;").then(msg => {
+          Message.channel.send("FloBot commands can only be used by Nitro boosters in this channel!~ >w>").then(msg => {
             setTimeout(() => {
               msg.delete();
             }, 5e3);
