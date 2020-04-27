@@ -17,6 +17,15 @@ const Config = require("./config.js"); // load config
 const Prefix = Config.Prefix; // bot prefix "!" by default
 const Token = Config.Token; // bot token
 
+const SpecList = {
+  696160005967314985: [ // flolo serber
+    "696175255709810720",
+    "703106446220328960",
+    "701857669958467595",
+    "699744420798660638"
+  ]
+}
+
 const dogEmoji = String.fromCharCode("55357");
 
 const updateMemberCount = function() {
@@ -44,6 +53,14 @@ Client.on("message", (Message) => { // emitted whenever someone sends a message
   
   if (Channel.id == "696428646017269852") {
     return cleverbotReply(Message);
+  }
+
+  if (SpecList[Guild.id]) {
+    let isAllowed = false;
+    for (i in SpecList[Guild.id]) {
+      if (SpecList[Guild.id][i] == Channel.id) isAllowed = true;
+    }
+    if (!isAllowed) return;
   }
 
 	if (Content.toLowerCase().startsWith(Prefix)) { // if the message starts with our prefix
