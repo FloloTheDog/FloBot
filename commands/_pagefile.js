@@ -33,7 +33,7 @@ module.exports = {
   "blush": require("./blush.js"),
   //"test": require("./test.js"),
   "fuck": require("./fuck.js"),
-  "rape": require("./rape.js"),
+  //"rape": require("./rape.js"),
   "roll": require("./roll.js"),
   "stats": require("./stats.js"),
 	// add an entry for every command
