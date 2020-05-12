@@ -7,7 +7,8 @@
  */
 const request = require("request");
 const cheerio = require("cheerio");
-module.exports = function(msg, client, args) {
+const img_gen = require("../lib/luv_pic_gen");
+module.exports = async function(msg, client, args) {
 	let users = msg.mentions.users.array();
 	if (!users || users.length < 1) {
 		msg.reply("<.< Please supply two users to ship");
@@ -32,14 +33,37 @@ module.exports = function(msg, client, args) {
 			return;
 		}
       let percent = e.match(/\d+/)[0] + "%";
-	    let numper = parseInt(e.match(/\d+/)[0], 10);
+	  let numper = parseInt(e.match(/\d+/)[0], 10);
+	  let same;
       if (
+      	(id1 == id2 || id2 == id1)
+      ) {
+      	percent = "-2147483647%";
+        numper = "-2147483647";
+        same = true;
+      } else if (
         (id1 == 579413130506010654 || id1 == 299708692129906692)
         &&
         (id2 == 299708692129906692 || id2 == 579413130506010654)
       ) {
         percent = "100%";
         numper = "100";
+      } else if (
+        (id1 == 138757634500067328 || id1 == 299708692129906692)
+        &&
+        (id2 == 299708692129906692 || id2 == 138757634500067328)
+      ) {
+        percent = "98%";
+        numper = "98";
+      } else if (
+      	(id1 == 299708692129906692)
+		    ||
+      	(id2 == 299708692129906692)
+      ) {
+      	let i = Math.floor(Math.random() * 98) + 92;
+      	i = i > 100 ? 100 : i;
+      	percent = `${i}%`;
+      	numper = `${i}`;
       }
       let cname = "error";
       let vowels = "AaEeIiOoUuYy";
@@ -49,6 +73,7 @@ module.exports = function(msg, client, args) {
       } else {
         cname = name1.charAt(0) + name2.substr(1);
       }
+      if (same) cname = "undefined";
 	    if (numper > 95) {
         lovemsg = "It's true love.";
       }  else if (numper > 90) {
@@ -74,7 +99,22 @@ module.exports = function(msg, client, args) {
       }  else {
         lovemsg = "It wasn't meant to be.";
       }
-      msg.channel.send((numper < 50 ? ":broken_heart:" : ":heart:") + " The love between `" + name1 + "` and `" + name2 + "` (`" + cname + "`) is " + percent + "\n" + lovemsg);
-	    msg.channel.stopTyping();
+      img_gen(users[0].avatarURL, users[1] ? users[1].avatarURL : msg.author.avatarURL, numper < 50 ? "false" : "true")
+      .then(img => {
+        msg.channel.send((numper < 50 ? ":broken_heart:" : ":heart:") + " The love between `" + name1 + "` and `" + name2 + "` (`" + cname + "`) is " + percent + "\n" + lovemsg, {
+          files: [
+            {
+              attachment: img,
+              name: "ship.png"
+            }
+          ]
+        });
+        msg.channel.stopTyping();
+      })
+      .catch(err => {
+        console.log(err);
+        msg.channel.send((numper < 50 ? ":broken_heart:" : ":heart:") + " The love between `" + name1 + "` and `" + name2 + "` (`" + cname + "`) is " + percent + "\n" + lovemsg);
+        msg.channel.stopTyping();
+      });
 	});
 }
