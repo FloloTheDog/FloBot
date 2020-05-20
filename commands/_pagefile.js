@@ -30,7 +30,7 @@ module.exports = {
   "propose": require("./propose.js"),
   "howcute": require("./howcute.js"),
   "howgay": require("./howgay.js"),
-  "blush": require("./blush.js"),
+  //"blush": require("./blush.js"),
   //"test": require("./test.js"),
   "fuck": require("./fuck.js"),
   //"rape": require("./rape.js"),
