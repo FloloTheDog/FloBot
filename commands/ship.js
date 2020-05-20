@@ -38,16 +38,16 @@ module.exports = async function(msg, client, args) {
       if (
       	(id1 == id2 || id2 == id1)
       ) {
-      	percent = "-2147483647%";
-        numper = "-2147483647";
+      	percent = "-Infinity%";
+        numper = "-Infinity";
         same = true;
       } else if (
         (id1 == 579413130506010654 || id1 == 299708692129906692)
         &&
         (id2 == 299708692129906692 || id2 == 579413130506010654)
       ) {
-        percent = "100%";
-        numper = "100";
+        percent = "Infinity%";
+        numper = "Infinity";
       } else if (
         (id1 == 138757634500067328 || id1 == 299708692129906692)
         &&
@@ -60,12 +60,12 @@ module.exports = async function(msg, client, args) {
 		    ||
       	(id2 == 299708692129906692)
       ) {
-      	let i = Math.floor(Math.random() * 98) + 92;
+      	let i = Math.floor(Math.random() * 98) + 88;
       	i = i > 100 ? 100 : i;
       	percent = `${i}%`;
       	numper = `${i}`;
       }
-      let cname = "error";
+      let cname = "NaN";
       let vowels = "AaEeIiOoUuYy";
       let lovemsg = "";
       if (vowels.includes(name2.charAt(0))) {
