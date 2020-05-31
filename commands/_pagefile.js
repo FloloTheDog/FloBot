@@ -37,6 +37,7 @@ module.exports = {
   "roll": require("./roll.js"),
   "stats": require("./stats.js"),
   "ridaman": require("./floridaman.js"),
+  "topic": require("./topic.js"),
 	// add an entry for every command
   
   
