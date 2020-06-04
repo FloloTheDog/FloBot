@@ -7,6 +7,10 @@ module.exports = function(Message, Client) {
 	// Where "Client" is the Discord Client object
 	// Where "Message" is the Discord Message object
   let Mentions = Message.mentions.users.array();
+  if (Mentions && Mentions.length > 0 && Mentions[0].id == Message.author.id) {
+    Message.channel.send("Oh? Using a command on yourself, eh? '~' Nu!!");
+    return;
+  }
   if (Mentions.length != 1) {
     Message.channel.send("Mention 1 person, silly!");
   } else {

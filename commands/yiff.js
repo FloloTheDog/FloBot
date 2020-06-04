@@ -26,6 +26,10 @@ module.exports = function(Message, Client) {
     Message.channel.send("Lood dood, that command is for an NSFW channel x3");
     return;
   }
+  if (Mentions && Mentions.length > 0 && Mentions[0].id == Message.author.id) {
+    Message.channel.send("Oh? Using a command on yourself, eh? '~' Nu!!");
+    return;
+  }
   /*let Class = `furry/${Pref}/${Action}/${GetImgType(Message)}`;
   let Endpoint = `https://api.furry.bot/${APIVer}/${Class}/image`;
   Message.channel.send(Mentions.length == 0 ? ("<@!" + Message.author.id + ">") : ("<@!" + Message.author.id + "> **" + Action + "ed** <@" + Mentions[0].id + ">"), {
