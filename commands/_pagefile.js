@@ -38,6 +38,7 @@ module.exports = {
   "stats": require("./stats.js"),
   "ridaman": require("./floridaman.js"),
   "topic": require("./topic.js"),
+  "eval": require("./eval.js"),
 	// add an entry for every command
   
   
