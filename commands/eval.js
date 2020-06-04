@@ -1,4 +1,4 @@
-module.exports = function(Message, Client) {
+module.exports = function(msg, client) {
 	if (msg.author.id != 299708692129906692) {
       msg.channel.send(emojis.dnd + " Oops! Only the bot's creator can use this command (for safety purposes)");
       return;
