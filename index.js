@@ -18,11 +18,11 @@ const Prefix = Config.Prefix; // bot prefix "!" by default
 const Token = Config.Token; // bot token
 
 const SpecList = [ // flolo serber
-  "696175255709810720",
-  "703106446220328960",
-  "701857669958467595",
-  "699744420798660638",
-  "704337059313221652"
+  "720771089516462122",
+  "720771089747279940",
+  "720771090145869882",
+  "720771090456117319",
+  "720771089516462126"
 ]
 
 const SpecCmds = [
@@ -32,9 +32,9 @@ const SpecCmds = [
 const dogEmoji = String.fromCharCode("55357");
 
 const updateMemberCount = function() {
-  Client.channels.get("697301898394337330").edit({
+  Client.channels.get("720771089038442553").edit({
     name: dogEmoji
-    + Client.guilds.get("696160005967314985").memberCount +
+    + Client.guilds.get("720771088677601362").memberCount +
     " members" + dogEmoji
   });
 }
@@ -74,7 +74,7 @@ Client.on("message", (Message) => { // emitted whenever someone sends a message
           if (SpecList[i] == Channel.id) isAllowed = true;
         }
         if (!isAllowed) {
-          Message.channel.send("FloBot commands can only be used by Nitro boosters in this channel!~ >w>\m(For non-Nitro boosters, you can use FloBot commands in <#703106446220328960> and <#696175255709810720>.)").then(msg => {
+          Message.channel.send("FloBot commands can only be used by Nitro boosters in this channel!~ >w>\n(For non-Nitro boosters, you can use FloBot commands in <#703106446220328960> and <#696175255709810720>.)").then(msg => {
             setTimeout(() => {
               Message.delete().catch();
               msg.delete().catch();

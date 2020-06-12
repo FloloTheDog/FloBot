@@ -285,14 +285,24 @@ const topicList = [
   "A portal to another world opens in front of you. You don’t know how long it will stay open or if you’ll be able to get back after you go through. What do you do?",
   "Why are black people so loud?"
 ];
+let listenerTable = {};
 module.exports = function(Message, Arguments, Client) {
 	// Where "Client" is the Discord Client object
 	// Where "Message" is the Discord Message object
 	// Where "Arguments" is the provided Arguments
 	// user types: "!ping" (or whatever prefix you use)
 	//bot responds: "Pong!"
-	let t = Math.floor(Math.random() * topicList.length) - 1;
-	Message.channel.send(topicList[t] || "L");
+	const author = Message.author.id;
+	if (!listenerTable[author]) {
+		const t = Math.floor(Math.random() * topicList.length) - 1;
+		listenerTable[author] = true;
+		setTimeout(() => {
+			listenerTable[author] = false;
+		}, 0x0493E0);
+		Message.channel.send(topicList[t] || "L");
+	} else {
+		Message.react(":x:");
+	}
 	// an alternative method would be "Message.reply()",
 	//which also precedes the message by mentioning the user
 }
