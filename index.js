@@ -55,7 +55,7 @@ Client.on("message", (Message) => { // emitted whenever someone sends a message
   
   if (Message.author.bot) return; //make sure they are a human
   
-  if (Channel.id == "696428646017269852") {
+  if (Channel.id == "720771089747279939") {
     return cleverbotReply(Message);
   }
 
@@ -66,7 +66,7 @@ Client.on("message", (Message) => { // emitted whenever someone sends a message
     	console.log(Commands[Command]);
 		if (Commands[Command]) { // check if the command exists
       console.log(Command);
-      if (Guild && Guild.id == 696160005967314985 && !GuildMember.roles.find(r => r.id == 696216363613683783) && !SpecCmds.includes(Command)) {
+      if (Guild && Guild.id == 720771088677601362 && !GuildMember.roles.find(r => r.id == 696216363613683783) && !SpecCmds.includes(Command)) {
         console.log("Special def req [" + Guild.id + "]");
         let isAllowed = false;
         for (i in SpecList) {
@@ -98,19 +98,17 @@ Client.on("message", (Message) => { // emitted whenever someone sends a message
 });
 
 Client.on("guildMemberAdd", function(GuildMember) {
-	if (GuildMember.guild.id !== "696160005967314985") return;
-	let msg = `Welcome to the **Cutie Corner**, ${GuildMember.user.username}! Please take a moment to introduce yourself in <#696176959402672198>, and specify your roles in <#696176683488641084>!
-	__**Please note**:__ In an effort to stop raids, you cannot talk in the server until you are verified (fastest way to get verified is introduce yourself) so when you're ready, head on over to <#696176959402672198>!
-  ***NEW MEMBERS CANNOT SEND IMAGES:*** You must be in the server for at least a week before you can send images in channels.`;
+	if (GuildMember.guild.id !== "v") return;
+	let msg = `Welcome to **Afo Super Server**, ${GuildMember.user.username}! Please take a moment to introduce yourself in <#720771089516462120>, and grab your roles in <#720771089323655184>!`;
 	let file = {
 		attachment: "https://i.imgur.com/MlPK9ys.png",
 		name: "welcome.png"
 	}
 	GuildMember.user.send(msg, {
-		tts: true,
-		files: [
+		tts: true
+		/*files: [
 			file
-		]
+		]*/
 	}).catch(() => {
 		GuildMember.guild.channels.get(ch => ch.id == "696176819317243984").send("<@!" + GuildMember.user.id  + "> " + msg, {
 			files: [
@@ -121,11 +119,11 @@ Client.on("guildMemberAdd", function(GuildMember) {
   updateMemberCount();
 });
 Client.on("guildMemberRemove", function(GuildMember) {
-	if (GuildMember.guild.id !== "696160005967314985") return;
+	if (GuildMember.guild.id !== "720771088677601362") return;
   updateMemberCount();
 })
 
-const WSMsgChannel = Client.channels.get("696428646017269852");
+const WSMsgChannel = Client.channels.get("720771089747279939");
 let wsconnection;
 const wsconnect = async function() {
   wsclient.connect("wss://socket.chiefhappiness.co/socket.io/?EIO=3&transport=websocket", "echo-protocol");
@@ -210,13 +208,13 @@ wsclient.on("connect", function(connection) {
         try {
           let c = JSON.parse(content.replace("42", ""));
           if (c.length > 1 && c[1] && c[1].data) {
-            Client.channels.get("696428646017269852").stopTyping();
+            Client.channels.get("720771089747279939").stopTyping();
             if (c[1].data.interaction && c[1].data.interaction.narration) {
-              Client.channels.get("696428646017269852").send(`*${c[1].data.interaction.narration.replace(/Hyana/gmi, "").trim()}*`);
+              Client.channels.get("720771089747279939").send(`*${c[1].data.interaction.narration.replace(/Hyana/gmi, "").trim()}*`);
             } else if (c[1].data.action == "petMessage") {
               console.log("[WS] Chat event");
               let msg = c[1].data.message.message.replace(/Hyana/gmi, "FloBot").replace(/Flolo/gmi, "master");
-              Client.channels.get("696428646017269852").send(msg);
+              Client.channels.get("720771089747279939").send(msg);
             }
           } else {
             //not a chat event
