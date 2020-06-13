@@ -66,7 +66,7 @@ Client.on("message", (Message) => { // emitted whenever someone sends a message
     	console.log(Commands[Command]);
 		if (Commands[Command]) { // check if the command exists
       console.log(Command);
-      if (Guild && Guild.id == 720771088677601362 && !GuildMember.roles.find(r => r.id == 696216363613683783) && !SpecCmds.includes(Command)) {
+      if (Guild && Guild.id == 720771088677601362 && !GuildMember.roles.find(r => r.id == 720784791577821275) && !SpecCmds.includes(Command)) {
         console.log("Special def req [" + Guild.id + "]");
         let isAllowed = false;
         for (i in SpecList) {
@@ -74,7 +74,7 @@ Client.on("message", (Message) => { // emitted whenever someone sends a message
           if (SpecList[i] == Channel.id) isAllowed = true;
         }
         if (!isAllowed) {
-          Message.channel.send("FloBot commands can only be used by Nitro boosters in this channel!~ >w>\n(For non-Nitro boosters, you can use FloBot commands in <#703106446220328960> and <#696175255709810720>.)").then(msg => {
+          Message.channel.send("FloBot commands can only be used by Nitro boosters in this channel!~ >w>\n(For non-Nitro boosters, you can use FloBot commands in <#720771089516462122> and <#720771089747279940>.)").then(msg => {
             setTimeout(() => {
               Message.delete().catch();
               msg.delete().catch();
