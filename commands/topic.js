@@ -295,13 +295,14 @@ module.exports = function(Message, Arguments, Client) {
 	const author = Message.author.id;
 	if (!listenerTable[author]) {
 		const t = Math.floor(Math.random() * topicList.length) - 1;
-		listenerTable[author] = true;
+		listenerTable[author] = Date.now();
 		setTimeout(() => {
 			listenerTable[author] = false;
 		}, 0x0493E0);
 		Message.channel.send(topicList[t] || "L");
 	} else {
-		Message.react(":x:");
+        const timeLeft = listenerTable[author] - Date.now();
+		Message.reply("You're on cooldown. Try again in " + timeLeft + ".");
 	}
 	// an alternative method would be "Message.reply()",
 	//which also precedes the message by mentioning the user
