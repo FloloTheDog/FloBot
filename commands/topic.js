@@ -287,7 +287,8 @@ const topicList = [
 ];
 let listenerTable = {};
 const msToTime = (ms) => {
-  return Math.ceil(ms / 1.66667e-5) + "m";
+    const time = Math.ceil(ms / 60000);
+    return time > 1 ? time + " minutes" : time + " minute";
 }
 module.exports = function(Message, Arguments, Client) {
 	// Where "Client" is the Discord Client object
