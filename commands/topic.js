@@ -286,14 +286,8 @@ const topicList = [
   "Why are black people so loud?"
 ];
 let listenerTable = {};
-const msToTime = (s) => {
-  let ms = s % 1000;
-  s = (s - ms) / 1000;
-  let secs = s % 60;
-  s = (s - secs) / 60;
-  let mins = s % 60;
-
-  return mins + 'm ' + secs + 's';
+const msToTime = (ms) => {
+  return Math.ceil(ms / 1.66667e-5) + "m";
 }
 module.exports = function(Message, Arguments, Client) {
 	// Where "Client" is the Discord Client object
