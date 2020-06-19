@@ -287,7 +287,7 @@ const topicList = [
 ];
 let listenerTable = {};
 const msToTime = (ms) => {
-    const time = Math.ceil(ms / 60000);
+    const time = 5 - Math.ceil(ms / 60000);
     return time > 1 ? time + " minutes" : time + " minute";
 }
 module.exports = function(Message, Arguments, Client) {
