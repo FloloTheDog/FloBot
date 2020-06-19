@@ -286,6 +286,15 @@ const topicList = [
   "Why are black people so loud?"
 ];
 let listenerTable = {};
+const msToTime = (s) => {
+  let ms = s % 1000;
+  s = (s - ms) / 1000;
+  let secs = s % 60;
+  s = (s - secs) / 60;
+  let mins = s % 60;
+
+  return mins + 'm ' + secs + 's';
+}
 module.exports = function(Message, Arguments, Client) {
 	// Where "Client" is the Discord Client object
 	// Where "Message" is the Discord Message object
@@ -301,8 +310,9 @@ module.exports = function(Message, Arguments, Client) {
 		}, 0x0493E0);
 		Message.channel.send(topicList[t] || "L");
 	} else {
-        const timeLeft = listenerTable[author] - Date.now();
-		Message.reply("You're on cooldown. Try again in " + timeLeft + ".");
+        const timeLeft = Date.now() - listenerTable[author];
+        const formattedTime = msToTime(timeLeft);
+		Message.reply("You're on cooldown. Try again in " + formattedTime + ".");
 	}
 	// an alternative method would be "Message.reply()",
 	//which also precedes the message by mentioning the user
