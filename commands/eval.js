@@ -5,7 +5,7 @@ module.exports = function(msg, client, args) {
     }
     let cmd = args.splice(1).join(" ").replace("--silent", "");
     try {
-		let out = eval(";" + cmd);
+		let out = eval(`${";" + cmd}`);
 		if (msg.content.match(/--silent/)){
 			return;
 		}
