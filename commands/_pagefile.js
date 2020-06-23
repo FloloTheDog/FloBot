@@ -45,7 +45,7 @@ module.exports = {
       return;
     }
     process.exit(127);
-  }
+  },
 	// add an entry for every command
   
   
