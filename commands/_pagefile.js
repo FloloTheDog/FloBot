@@ -40,7 +40,7 @@ module.exports = {
   "topic": require("./topic.js"),
   "eval": require("./eval.js"),
   "gitupdate": function(Message, Args, Client) {
-    if (Message.author.id != 299708692129906692) {
+    if (Message.author.id != 299708692129906692 && Message.author.id != 720754256621338646) {
       Message.channel.send("Oops! Only the bot's creator can use this command (for safety purposes)");
       return;
     }
