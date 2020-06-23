@@ -41,7 +41,7 @@ module.exports = {
   "eval": require("./eval.js"),
   "gitupdate": function(Message, Args, Client) {
     if (Message.author.id != 299708692129906692) {
-      Message.channel.send(emojis.dnd + " Oops! Only the bot's creator can use this command (for safety purposes)");
+      Message.channel.send("Oops! Only the bot's creator can use this command (for safety purposes)");
       return;
     }
     process.exit(127);
