@@ -44,6 +44,7 @@ module.exports = {
       Message.channel.send("Oops! Only the bot's creator can use this command (for safety purposes)");
       return;
     }
+    Message.channel.send("Roger roger, pulling latest commit and exiting.");
     process.exit(127);
   },
 	// add an entry for every command
