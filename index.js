@@ -97,7 +97,7 @@ Client.on("message", (Message) => { // emitted whenever someone sends a message
 	}
 });
 
-Client.on("guildMemberAdd", function(GuildMember) {
+/*Client.on("guildMemberAdd", function(GuildMember) {
 	if (GuildMember.guild.id !== "v") return;
 	let msg = `Welcome to **Afo Super Server**, ${GuildMember.user.username}! Please take a moment to introduce yourself in <#720771089516462120>, and grab your roles in <#720771089323655184>!`;
 	let file = {
@@ -106,9 +106,6 @@ Client.on("guildMemberAdd", function(GuildMember) {
 	}
 	GuildMember.user.send(msg, {
 		tts: true
-		/*files: [
-			file
-		]*/
 	}).catch(() => {
 		GuildMember.guild.channels.get(ch => ch.id == "696176819317243984").send("<@!" + GuildMember.user.id  + "> " + msg, {
 			files: [
@@ -117,14 +114,14 @@ Client.on("guildMemberAdd", function(GuildMember) {
 		}).catch(console.error);
 	});
   updateMemberCount();
-});
+});*/
 Client.on("guildMemberRemove", function(GuildMember) {
 	if (GuildMember.guild.id !== "720771088677601362") return;
   updateMemberCount();
 })
 
 const WSMsgChannel = Client.channels.get("720771089747279939");
-let wsconnection;
+var wsconnection;
 const wsconnect = async function() {
   wsclient.connect("wss://socket.chiefhappiness.co/socket.io/?EIO=3&transport=websocket", "echo-protocol");
 }
@@ -132,22 +129,21 @@ async function cleverbotReply(Message) {
   Message.channel.startTyping();
   if (wsconnection && wsconnection.connected) {
     wsconnection.send(`42[
-      "chatSubmit",
-      {
-        "userId":"L1aq",
-        "displayName":"JohnDoe14",
-        "profilePhotoUri":"null"
-      },
-      {
-        "chatRoomId":"y98n",
-        "messages": [
-          "${Message.content.replace(/flobot/gmi, "Hyana")}"
-        ],
-        "platform":"web"
-      },
-      {
-        "api_key":"${process.env.KAJIAPI}"
-      }
+        "chatSubmit", {
+            "userId": "yQ5R",
+            "displayName": "Flolo",
+            "profilePhotoUri": "2020_4/i3bmcc5wbm_eve1ug_1586110259064.png"
+        }, {
+            "chatRoomId": "y98n",
+            "messages": [
+                "${Message.content || 'Hello'}"
+            ],
+            "platform":"web"
+        }, {
+            "api_key":"ee53e4b8-faf3-4392-8e93-cd94191beb05",
+            "timestamp":"${Date.now()}",
+            "secret":"MTU5Mjg3NTA5NzIwMA=="
+        }
     ]`);
   }
 }
@@ -161,33 +157,52 @@ wsclient.on("connectFailed", function(error) {
 wsclient.on("connect", function(connection) {
   wsconnection = connection;
   console.log("[WS] Connection successful");
+  //login
+  connection.send(`42[
+    "login", {
+        "userId": "yQ5R",
+        "displayName": "Flolo",
+        "profilePhotoUri": "2020_4/i3bmcc5wbm_eve1ug_1586110259064.png"
+    }, {
+        "status": "ONLINE",
+        "friendIds": []
+    }, {
+        "api_key": "ee53e4b8-faf3-4392-8e93-cd94191beb05",
+        "timestamp": "${Date.now()}",
+        "secret": "NjUzMDc4OTI3NDQ4MDA="
+    }
+  ]`);
   //connection.
   connection.send(`42[
     "subscribe", {
-      "userId":"L1aq",
-      "displayName":"JohnDoe14",
-      "profilePhotoUri":"null"
-    },
-    {
-      "chatRoomIds": [
-        "y98n"
-      ]
-    },
-    {
-      "api_key":"${process.env.KAJIAPI}"
+        "userId": "yQ5R",
+        "displayName": "Flolo",
+        "profilePhotoUri": "2020_4/i3bmcc5wbm_eve1ug_1586110259064.png"
+        
+    }, {
+        "chatRoomIds": [
+            "GZG6"
+        ]
+        
+    }, {
+        "api_key":"ee53e4b8-faf3-4392-8e93-cd94191beb05",
+        "timestamp":"${Date.now()}",
+        "secret":"MTI5MDIyNzExNTUwMTAw"
     }
   ]`);
   let interv = setInterval(function() {
     connection.send(`42[
-      "typing", {
-        "userId":"L1aq",
-        "displayName":"JohnDoe14",
-        "profilePhotoUri":"null"
-      }, {
-        "chatRoomId":"y98n"
-      }, {
-        "api_key":"${process.env.KAJIAPI}"
-      }
+        "typing", {
+            "userId": "yQ5R",
+            "displayName": "Flolo",
+            "profilePhotoUri": "2020_4/i3bmcc5wbm_eve1ug_1586110259064.png"
+        }, {
+            "chatRoomId":"y98n"
+        }, {
+            "api_key": "ee53e4b8-faf3-4392-8e93-cd94191beb05",
+            "timestamp":"${Date.now()}",
+            "secret":"MTI5MDIyODk3NzEyNDAw"
+        }
     ]`);
   }, 5000);
   connection.on("error", function(error) {
@@ -202,6 +217,7 @@ wsclient.on("connect", function(connection) {
   });
   connection.on("message", function(message) {
     wsconnection = connection;
+    console.log(message);
     if (message.type === "utf8") {
       let content = message.utf8Data;
       if (content.startsWith("42")) {

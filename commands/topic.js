@@ -297,7 +297,7 @@ module.exports = function(Message, Arguments, Client) {
 	// user types: "!ping" (or whatever prefix you use)
 	//bot responds: "Pong!"
 	const author = Message.author.id;
-	if (!listenerTable[author]) {
+	if (!listenerTable[author] && !Message.member.roles.find(r => r.id == 720784791577821275)) {
 		const t = Math.floor(Math.random() * topicList.length) - 1;
 		listenerTable[author] = Date.now();
 		setTimeout(() => {
