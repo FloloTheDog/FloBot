@@ -308,7 +308,7 @@ module.exports = function(Message, Arguments, Client) {
 	} else {
         const timeLeft = Date.now() - listenerTable[author];
         const formattedTime = msToTime(timeLeft);
-		Message.reply("You're on cooldown. Try again in " + formattedTime + ".");
+		Message.reply("You're on cooldown. Try again in " + formattedTime + ".\n(Nitro boosters bypass the cooldown.)");
 	}
 	// an alternative method would be "Message.reply()",
 	//which also precedes the message by mentioning the user
