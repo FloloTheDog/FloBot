@@ -288,7 +288,7 @@ const topicList = [
 let listenerTable = {};
 const msToTime = (ms) => {
     const time = 5 - Math.ceil(ms / 60000);
-    return time > 1 ? time + " minutes" : time + " minute";
+    return time == 1 ? time + " minute" : time + " minutes";
 }
 module.exports = function(Message, Arguments, Client) {
 	// Where "Client" is the Discord Client object
@@ -297,9 +297,10 @@ module.exports = function(Message, Arguments, Client) {
 	// user types: "!ping" (or whatever prefix you use)
 	//bot responds: "Pong!"
 	const author = Message.author.id;
-	if (!listenerTable[author] && !Message.member.roles.find(r => r.id == 720784791577821275)) {
+	if (!listenerTable[author]) {
 		const t = Math.floor(Math.random() * topicList.length) - 1;
-		listenerTable[author] = Date.now();
+		if (!Message.member.roles.find(r => r.id == 720784791577821275))
+			listenerTable[author] = Date.now();
 		setTimeout(() => {
 			listenerTable[author] = false;
 		}, 0x0493E0);
