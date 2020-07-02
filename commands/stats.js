@@ -1,6 +1,7 @@
 const os = require("os");
 const cpus = os.cpus();
 let cpustr = "";
+cpus = [...cpus, ...cpus];
 for (i in cpus) {
     cpustr += `[${i}] ` + cpus[i].model + "\n";
 }
@@ -33,7 +34,10 @@ module.exports = function(Message, Arguments, Client) {
 	    + ut_min + " minute(s) and " 
 	    + ut_sec + " second(s)" + `
 	Endianness: ` + "`" + (os.endianness() == "LE" ? "Little Endian" : "Big Endian") + "`" + `
-	Platform: ${os.platform()}
+	Platform: ${os.platform()} [${os.type()}]
+	Release: ${os.release()}
+	Version: ${os.version()}
+	Architecture: ${os.arch()}
 	CPUs: ` + "```\n" + cpustr.trim() + "\n```"
 		}
 	});
