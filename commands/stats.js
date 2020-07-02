@@ -11,7 +11,7 @@ module.exports = function(Message, Arguments, Client) {
 			title: "Statistics",
 			description: `
 	**FloStats**
-	Running in ` + `${Client.guilds.size}` + ` servers
+	Running in ` + `${[...Client.guilds.values()].length}` + ` servers
 	Uptime: ${os.uptime()}
 	Endianness: ` + "`" + (os.endianness() == "LE" ? "Little Endian" : "Big Endian") + "`" + `
 	Platform: ${os.platform()}
