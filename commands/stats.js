@@ -1,7 +1,7 @@
 const os = require("os");
 const cpus = os.cpus();
 let cpustr = "";
-cpus = [...cpus, ...cpus];
+///cpus = [...cpus, ...cpus];
 for (i in cpus) {
     cpustr += `[${i}] ` + cpus[i].model + "\n";
 }
