@@ -36,7 +36,6 @@ module.exports = function(Message, Arguments, Client) {
 	Endianness: ` + "`" + (os.endianness() == "LE" ? "Little Endian" : "Big Endian") + "`" + `
 	Platform: ${os.platform()} [${os.type()}]
 	Release: ${os.release()}
-	Version: ${os.version()}
 	Architecture: ${os.arch()}
 	CPUs: ` + "```\n" + cpustr.trim() + "\n```"
 		}
