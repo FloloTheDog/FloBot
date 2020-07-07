@@ -38,8 +38,8 @@ module.exports = async function(msg, client, args) {
       if (
       	(id1 == id2 || id2 == id1)
       ) {
-      	percent = "-Infinity%";
-        numper = "-Infinity";
+      	percent = "100% :)";
+        numper = "100";
         same = true;
       } else if (
         (id1 == 579413130506010654 || id1 == 299708692129906692)
