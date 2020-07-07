@@ -56,9 +56,9 @@ module.exports = async function(msg, client, args) {
         percent = "98%";
         numper = "98";
       } else if (
-      	(id1 == 299708692129906692)
+      	(id1 == 720754256621338646)
 		    ||
-      	(id2 == 299708692129906692)
+      	(id2 == 720754256621338646)
       ) {
       	let i = Math.floor(Math.random() * 98) + 88;
       	i = i > 100 ? 100 : i;
