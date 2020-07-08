@@ -4,7 +4,7 @@ module.exports = function(Message, Client) {
 
 	// user types: "!ping" (or whatever prefix you use)
 	//bot responds: "Pong!"
-	//Message.channel.send(";w; You're sick~");
+	Message.channel.send(";w; You're sick~");
 	// an alternative method would be "Message.reply()",
 	//which also precedes the message by mentioning the user
 }
