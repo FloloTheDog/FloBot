@@ -28,6 +28,6 @@
     "seedrandom": "*",
     "express": "^4.17.1",
     "websocket": "^1.0.30",
-    "googleapis": "39.0.0"
+    "googleapis": "59.0.0"
   }
 }
